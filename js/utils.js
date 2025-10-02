@@ -1,32 +1,13 @@
-// Seletores
-const authForm = document.getElementById('authForm');
-const authFormTitle = document.getElementById('authFormTitle');
-const toggleAuthToRegister = document.getElementById('toggleAuthToRegister');
-const toggleRegisterToAccess = document.getElementById('toggleRegisterToAccess');
-
-// Alternar para o formulário de cadastro
 function toggleToRegister() {
-  authFormTitle.innerText = 'Insira seus dados para se cadastrar';
-  document.getElementById('submitAuthForm').innerText = 'Cadastrar';
-  
-  hideItem(toggleAuthToRegister);
-  showItem(toggleRegisterToAccess);
+  document.getElementById("authFormTitle").innerText = "Crie sua conta para continuar";
+  document.getElementById("submitAuthForm").innerText = "Cadastrar";
+  document.getElementById("toggleAuthToRegister").classList.add("startHidden");
+  document.getElementById("toggleRegisterToAccess").classList.remove("startHidden");
 }
 
-// Alternar para o formulário de acesso
 function toggleToAccess() {
-  authFormTitle.innerText = 'Acesse sua conta para continuar';
-  document.getElementById('submitAuthForm').innerText = 'Acessar';
-  
-  hideItem(toggleRegisterToAccess);
-  showItem(toggleAuthToRegister);
-}
-
-// Funções de exibição
-function hideItem(item) {
-  item.style.display = 'none';
-}
-
-function showItem(item) {
-  item.style.display = 'block';
+  document.getElementById("authFormTitle").innerText = "Acesse sua conta para continuar";
+  document.getElementById("submitAuthForm").innerText = "Acessar";
+  document.getElementById("toggleAuthToRegister").classList.remove("startHidden");
+  document.getElementById("toggleRegisterToAccess").classList.add("startHidden");
 }
