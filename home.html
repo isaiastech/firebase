@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TodoList - Página Principal</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 100px; }
+    button { padding: 10px 20px; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Bem-vindo(a) ao TodoList!</h1>
+  <p>Você está logado com sucesso.</p>
+  <button id="logoutBtn">Sair</button>
+
+   <script type="module">
+      import { auth } from "./js/firebase.js";
+      import { onAuthStateChanged, signOut } 
+        from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+
+      const logoutBtn = document.getElementById("logoutBtn");
+
+      // 🔐 Verifica se o usuário está autenticado
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          // 🚫 Usuário não logado → redireciona
+          window.location.href = "./index.html";
+        } else {
+          // ✅ Usuário logado → exibe o e-mail dele
+          const info = document.createElement("p");
+          info.style.color = "green";
+          info.innerHTML = `Logado como: <b>${user.email}</b>`;
+          document.body.insertBefore(info, document.body.firstChild);
+        }
+      });
+
+      // 🔓 Logout
+      logoutBtn.addEventListener("click", () => {
+        signOut(auth).then(() => {
+          window.location.href = "./index.html";
+        });
+      });
+    </script>
+</body>
+</html>
